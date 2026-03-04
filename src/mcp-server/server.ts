@@ -37,7 +37,7 @@ const loadPackageInfo = async (loggerInstance?: ChildLogger): Promise<{ name: st
     async () => {
       // Use the globally defined __dirname from the top of the file
       const pkgPath = path.resolve(__dirname, '../../package.json');
-      const safePath = sanitizeInput.path(pkgPath);
+      const safePath = sanitizeInput.path(pkgPath, { allowAbsolute: true });
       
       pkgLogger.debug(`Looking for package.json at: ${safePath}`);
       

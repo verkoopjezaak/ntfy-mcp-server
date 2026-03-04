@@ -222,13 +222,17 @@ export const processNtfyMessage = async (
         requestId: requestCtx.requestId
       });
       
-      // Set authentication if API key is available
+      // Set authentication if API key or basic auth credentials are available
       if (ntfyConfig.apiKey) {
         publishOptions.auth = ntfyConfig.apiKey;
+      } else if (ntfyConfig.username && ntfyConfig.password) {
+        publishOptions.username = ntfyConfig.username;
+        publishOptions.password = ntfyConfig.password;
       }
-      
+
       ntfyToolLogger.debug('Authentication configured', {
         hasAuth: !!publishOptions.auth,
+        hasBasicAuth: !!(ntfyConfig.username && ntfyConfig.password),
         apiKeyAvailable: !!ntfyConfig.apiKey,
         requestId: requestCtx.requestId
       });

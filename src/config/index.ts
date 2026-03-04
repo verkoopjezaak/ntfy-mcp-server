@@ -104,6 +104,8 @@ export const config = {
     baseUrl: process.env.NTFY_BASE_URL || 'https://ntfy.sh',
     defaultTopic: process.env.NTFY_DEFAULT_TOPIC || '',
     apiKey: process.env.NTFY_API_KEY || '',
+    username: process.env.NTFY_USERNAME || '',
+    password: process.env.NTFY_PASSWORD || '',
     maxMessageSize: parsers.number(process.env.NTFY_MAX_MESSAGE_SIZE, 4096),
     maxRetries: parsers.number(process.env.NTFY_MAX_RETRIES, 3),
   },

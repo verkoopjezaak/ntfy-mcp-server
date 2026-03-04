@@ -124,8 +124,8 @@ export async function publish(
         throw new NtfyInvalidTopicError(ERROR_MESSAGES.INVALID_TOPIC, topic);
       }
 
-      // Build URL
-      const baseUrl = sanitizeInput.url(options.baseUrl || DEFAULT_NTFY_BASE_URL);
+      // Build URL - baseUrl comes from trusted config, don't validate as public URL
+      const baseUrl = (options.baseUrl || DEFAULT_NTFY_BASE_URL).replace(/\/+$/, '');
       const url = `${baseUrl}/${sanitizeInput.string(topic)}`;
       
       publisherLogger.debug('Publishing to URL', { 
